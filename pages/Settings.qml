@@ -49,8 +49,12 @@ Page {
             width: page.width
             spacing: Screen.height/30
             leftPadding: Screen.width/30
+            topPadding: Screen.height/30
 
-            Label { text: qsTr("Server settings") }
+            Label {
+                font.bold: true
+                text: qsTr("Server settings")
+            }
            Text {
                 //font.pixelSize: Theme.fontSizeSmall
                 //color: Theme.primaryColor
@@ -124,7 +128,10 @@ Page {
                         }
                     }
 
-            Label { text: qsTr("Other settings") }
+            Label {
+                font.bold: true
+                text: qsTr("Other settings")
+            }
             Text {
                 //font.pixelSize: Theme.fontSizeSmall
                 //color: Theme.primaryColor

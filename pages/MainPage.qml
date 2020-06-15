@@ -1,6 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.5
+import QtQuick.Controls 1.4
 import QtQuick.LocalStorage 2.0
+import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.2
 import harbour.koronako.koronascan 1.0
 import harbour.koronako.koronaclient 1.0
@@ -37,7 +39,10 @@ Page {
             width: page.width
             spacing: Screen.height/30
             leftPadding: Screen.width/30
+            topPadding: Screen.height/30
+
             Label {
+                font.bold: true
                 text:qsTr("Phones close of my phone: %1").arg(koronaList.get(0).devices)
                 MouseArea {
                     anchors.fill: parent
@@ -63,6 +68,7 @@ Page {
             }
 
             Label {
+                font.bold: true
                 text: qsTr("Phone exposures: %1").arg(koronaList.get(0).exposures)
                 MouseArea {
                     anchors.fill: parent
@@ -89,6 +95,7 @@ Page {
 
             Label {
                 id:headDaysCorona
+                font.bold: true
                 text: qsTr("Days from last corona exposure: %1").arg(koronaList.get(0).coronaExposureSince < 0 ? "-" : koronaList.get(0).coronaExposureSince)
                 MouseArea {
                     anchors.fill: parent
@@ -144,8 +151,12 @@ Page {
 
             Button {
                 id:checkMyKorona
-                text:qsTr("Check corona exposures")
                 anchors.horizontalCenter: parent.horizontalCenter
+                style: ButtonStyle {
+                    label: Text{
+                        text:qsTr("Check corona exposures")
+                    }
+                }
                 onClicked: {
                     enabled = false;
                     msgRow1.visible = false
@@ -157,6 +168,7 @@ Page {
 
 
             Label {
+                font.bold: true
                 text: qsTr("My korona infection")
                 MouseArea {
                     anchors.fill: parent
@@ -187,65 +199,77 @@ Page {
                 Button {
                     id: koronaStart
                     text: qsTr("Start date")
+                    style: ButtonStyle {
+                        label: Text{
+                            text: koronaStart.text
+                        }
+                    }
 
                     onClicked: {
-                        /*var dialog = pageStack.push(pickerComponent, {
-                                                    date: covidStartDate != "" ? covidStartDate : new Date('2020/05/01')
+                        var dialog = stackView.push(pickerComponent, {
+                                                    date: covidStartDate != "" ? covidStartDate : new Date('2020/06/01')
                                                 })
-                    dialog.accepted.connect(function() {
+                    dialog.clicked.connect(function() {
                         // Not accepting future date
-                        if((new Date(dialog.date)-new Date())/24/3600/1000 >0.5){
+                        if((new Date(dialog.selectedDate)-new Date())/24/3600/1000 >0.5){
                             covidStartDate = new Date()
                             koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
                         }
                         // Start date cannot be newer than end date
-                        else if((new Date(dialog.date)-new Date(covidEndDate))/24/3600/1000 >0.5){
+                        else if((new Date(dialog.selectedDate)-new Date(covidEndDate))/24/3600/1000 >0.5){
                             covidStartDate = covidEndDate
                             koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
 
                         }
                         else {
-                            koronaStart.text = dialog.dateText
-                            covidStartDate = dialog.date
+                            covidStartDate = dialog.selectedDate
+                            koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
                         }
                         Mydb.saveSettings(1);
-                    })*/
+                        stackView.pop()
+                    })
                     }
                 }
 
                 Button {
                     id: koronaEnd
                     text: qsTr("End date")
+                    style: ButtonStyle {
+                        label: Text{
+                            text: koronaEnd.text
+                        }
+                    }
 
                     onClicked: {
-                        /*var dialog = pageStack.push(pickerComponent, {
+                        var dialog = stackView.push(pickerComponent, {
                                                     date: covidEndDate != "" ? covidEndDate : new Date()
                                                 })
-                    dialog.accepted.connect(function() {
+                    dialog.clicked.connect(function() {
                         // Not accepting future date
-                        if((new Date(dialog.date)-new Date())/24/3600/1000 >0.5){
+                        if((new Date(dialog.selectedDate)-new Date())/24/3600/1000 >0.5){
                             covidEndDate = new Date()
                             koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
                         }
                         // End day cannot be earlier than start date
-                        else if ((new Date(dialog.date)-new Date(covidStartDate))/24/3600/1000 < 0.5) {
+                        else if ((new Date(dialog.selectedDate)-new Date(covidStartDate))/24/3600/1000 < 0.5) {
                             covidEndDate = covidStartDate
                             koronaEnd.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
                         }
                         else {
-                            koronaEnd.text = dialog.dateText
-                            covidEndDate = dialog.date
+                            covidEndDate = dialog.selectedDate
+                            koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
                         }
                         Mydb.saveSettings(1);
-                    })*/
+                        stackView.pop()
+                    })
                     }
                 }
             }
 
-            /*Component {
+            Component {
             id: pickerComponent
-            //DatePickerDialog {}
-        }*/
+            Calendar {}
+        }
 
             Text {
                 id: exposuresSentText
@@ -264,8 +288,12 @@ Page {
 
             Button {
                 id: sendMyKorona
-                text: qsTr("Send my infection data")
                 anchors.horizontalCenter: parent.horizontalCenter
+                style: ButtonStyle {
+                    label: Text{
+                        text: qsTr("Send my infection data")
+                    }
+                }
                 onClicked:{
                     enabled = false
                     koronaStart.enabled = false

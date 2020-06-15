@@ -1,6 +1,8 @@
 QT += quick
+QT += bluetooth
 
-CONFIG += c++11
+CONFIG += c++11  \
+          lrelease
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -15,7 +17,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 android: include(/home/riku/Android/Sdk/android_openssl/openssl.pri)
 
-QT += bluetooth
 
 SOURCES += \
         main.cpp \
@@ -41,3 +42,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     src/client.h \
     src/device.h
+
+lupdate_only{
+SOURCES = *.qml \
+          *.js \
+          pages/*.qml \
+          pages/*.js
+}
