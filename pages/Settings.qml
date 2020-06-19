@@ -90,6 +90,8 @@ Page {
                     }
 
                     Button {
+                        text: "X"
+                        width: page.width/5
                         visible: iipee.text != ""
                         //icon.source: "image://theme/icon-m-clear?" + (pressed
                         //                                              ? Theme.highlightColor
@@ -120,6 +122,8 @@ Page {
                         }
 
                         Button {
+                            text: "X"
+                            width: page.width/5
                             visible: portti.text != ""
                             //icon.source: "image://theme/icon-m-clear?" + (pressed
                             //                                              ? Theme.highlightColor
@@ -128,6 +132,21 @@ Page {
                         }
                     }
 
+                    Button {
+                        text:qsTr("Use test server")
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        onClicked: {
+                            serverPort = "9011";
+                            koronaClient.sport = serverPort;
+                            portti.text = serverPort;
+                            serverAddress = "77.240.23.45";
+                            koronaClient.sipadd = serverAddress;
+                            iipee.text = serverAddress;
+                            Mydb.saveSettings(0);
+                        }
+                    }
+
+/*
             Label {
                 font.bold: true
                 text: qsTr("Other settings")
@@ -146,7 +165,7 @@ Page {
                     qsTr("Timer settings etc")
                 }
             }
-
+*/
             Koronaclient {
                 id: koronaClient
                 onKorodataChanged:  console.log(korodata, "test")
