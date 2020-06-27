@@ -94,7 +94,7 @@ void Client::startClient()
 
     //portLineEdit->setValidator(new QIntValidator(1, 65535, this));
 
-    qDebug() << "This examples requires that you Fortune Server example as well.";
+    //qDebug() << "This examples requires that you Fortune Server example as well.";
 
     in.setDevice(tcpSocket);
     in.setVersion(QDataStream::Qt_4_0);
@@ -140,18 +140,18 @@ void Client::exchangeDataWithServer(QString _toTcp)
     tcpSocket->setProtocol(QSsl::TlsV1_0);
 
     tcpSocket->connectToHostEncrypted(mySipadd,mySport);
-    qDebug() << mySipadd << mySport;
+    //qDebug() << mySipadd << mySport;
     //if (tcpSocket->waitForConnected(5000)) {
     //    qDebug("Connected!");}
     tcpSocket->ignoreSslErrors();
 
     if (tcpSocket->waitForEncrypted(5000)) {
-        qDebug() << "Crypted!" << tcpSocket->errorString() << tcpSocket->sslHandshakeErrors().length();
+        //qDebug() << "Crypted!" << tcpSocket->errorString() << tcpSocket->sslHandshakeErrors().length();
         const QSslCipher cipher = tcpSocket->sessionCipher();
         const QString cipherInfo = QString("%1, %2 (%3/%4)").arg(cipher.authenticationMethod())
                                            .arg(cipher.name()).arg(cipher.usedBits())
                                            .arg(cipher.supportedBits());;
-        qDebug() << cipherInfo;
+        //qDebug() << cipherInfo;
         int values = 1;
         while (values > 0) {
             std::string temp = pairData.toStdString();
@@ -161,12 +161,12 @@ void Client::exchangeDataWithServer(QString _toTcp)
             tcpSocket->write(temp2,temp.length());
             QString result;
             result = temp2;
-            qDebug() << "Move request sent" << mySipadd << mySport << result;
+            //qDebug() << "Move request sent" << mySipadd << mySport << result;
             values--;
         }
 
         if(tcpSocket->waitForReadyRead()){
-            qDebug() << "Reading: " << tcpSocket->bytesAvailable();
+            //qDebug() << "Reading: " << tcpSocket->bytesAvailable();
 
             QByteArray temp2 = tcpSocket->readAll();
             QString nextFortune = QString::fromStdString(temp2.toStdString());
@@ -193,7 +193,7 @@ void Client::exchangeDataWithServer(QString _toTcp)
                 msgChanged(myMsg);
             }
             else {
-                qDebug() << "Server answers error: " << nextFortune;
+                //qDebug() << "Server answers error: " << nextFortune;
                 myMsg = 6; // Error message
                 msgChanged(myMsg);
             }
@@ -201,14 +201,14 @@ void Client::exchangeDataWithServer(QString _toTcp)
         }
         else {
             tcpSocket->abort();
-            qDebug("Data could not be read");
+            //qDebug("Data could not be read");
         }
     }
     else {
         tcpSocket->abort();
         myMsg = 1; // No connection message
         msgChanged(myMsg);
-        qDebug("Not connected!");
+        //qDebug("Not connected!");
     }
 }
 

@@ -81,16 +81,16 @@ Device::~Device()
 void Device::startScan()
 {
     discoveryAgent->start();
-    qDebug("scan");
 }
 
 void Device::scanFinished()
 {
-    qDebug() << "Finished" << discoveryAgent->discoveredDevices().count() ;
+    //qDebug() << "Finished" << discoveryAgent->discoveredDevices().count() ;
     for (int i=0 ; i < discoveryAgent->discoveredDevices().count();i++){
-        qDebug() << "Device" << discoveryAgent->discoveredDevices().at(i).address() << discoveryAgent->discoveredDevices().at(i).rssi() << discoveryAgent->discoveredDevices().at(i).majorDeviceClass();
+        //qDebug() << "Device" << discoveryAgent->discoveredDevices().at(i).address() << discoveryAgent->discoveredDevices().at(i).rssi() << discoveryAgent->discoveredDevices().at(i).majorDeviceClass();
         QBluetoothDeviceInfo::MajorDeviceClass dev_cla =  discoveryAgent->discoveredDevices().at(i).majorDeviceClass();
-        if (dev_cla == QBluetoothDeviceInfo::PhoneDevice || dev_cla == QBluetoothDeviceInfo::MiscellaneousDevice || dev_cla == QBluetoothDeviceInfo::UncategorizedDevice){
+        if (dev_cla == QBluetoothDeviceInfo::PhoneDevice){
+            //if (dev_cla == QBluetoothDeviceInfo::PhoneDevice || dev_cla == QBluetoothDeviceInfo::MiscellaneousDevice || dev_cla == QBluetoothDeviceInfo::UncategorizedDevice){
             if (discoveryAgent->discoveredDevices().at(i).rssi() < 0 && discoveryAgent->discoveredDevices().at(i).rssi() > -80){
                 QString mybt;
                 uint mybtint;
@@ -116,12 +116,24 @@ void Device::scanFinished()
                         sumbttotal = sumbttotal + ":" + sumbt ;
                     }
 
-                    qDebug() << "Dev found" << discoveryAgent->discoveredDevices().at(i).address() << discoveryAgent->discoveredDevices().at(i).rssi() << sumbttotal;
+                    //qDebug() << "Dev found" << discoveryAgent->discoveredDevices().at(i).address() << discoveryAgent->discoveredDevices().at(i).rssi() << sumbttotal;
                     myBtDevice = sumbttotal;
                     btDeviceChanged(myBtDevice);
                 }
             }
         }
+    }
+}
+
+void Device::setDiscoverable()
+{
+    if (localDevice->hostMode() != QBluetoothLocalDevice::HostDiscoverable) {
+        localDevice->setHostMode(QBluetoothLocalDevice::HostDiscoverable);
+        //qDebug("Changed discoverable");
+    }
+    else
+    {
+        //qDebug("Device was discoverable");
     }
 }
 

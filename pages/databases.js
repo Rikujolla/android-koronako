@@ -163,7 +163,7 @@ function findHits(_day) {
                     // Set new result to the list model
                     else if (rs.rows.length > 0) {
                         koronaList.set(0,{"devices": rs.rows.item(0).cdevicepair})
-                        console.log(koronaList.get(0).devices, "all devices", _day)
+                        //console.log(koronaList.get(0).devices, "all devices", _day)
                     }
                     // If no search results do nothing
                     else {}
@@ -176,7 +176,6 @@ function findHits(_day) {
                     // Set new result to the list model
                     else if (rs.rows.length > 0) {
                         koronaList.set(0,{"exposures": rs.rows.item(0).cdevicepair})
-                        console.log("test")
                     }
                     // If no search results do nothing
                     else {}
@@ -223,7 +222,7 @@ function checkMyExposures() {
                     tx.executeSql('CREATE TABLE IF NOT EXISTS Exposures(devicepair TEXT, day TEXT, hits INTEGER)');
 
                     var rs = tx.executeSql('SELECT devicepair FROM Exposures WHERE hits > ?', [minHits]);
-                    var _exposurelist = '00:1' + version.substring(0,1) + ':' + version.substring(2,3) + version.substring(4,5) +':00:00:00'
+                    var _exposurelist = '00:1' + ':' + version.substring(0,1) + version.substring(2,3) + version.substring(4,5) +':00:00:00'
                     for (var i = 1; i<rs.rows.length;i++){
 
                         _exposurelist = _exposurelist +  rs.rows.item(i).devicepair
@@ -263,7 +262,7 @@ function readMyKorona() {
                         }
 
                         he = new Date(covidEndDate).getDate()
-                        console.log("Only enddata affecting", ls, le, hs, he)
+                        //console.log("Only enddata affecting", ls, le, hs, he)
                     }
                     else if(new Date(covidStartDate).getMonth() != new Date(covidEndDate).getMonth()){
                         ls = new Date(covidStartDate).getDate()
@@ -278,7 +277,7 @@ function readMyKorona() {
 
 
                     var rs = tx.executeSql('SELECT devicepair FROM Exposures WHERE hits > ? AND substr(devicepair,3,1) = ?', [minHits, ':']);
-                    var _koronalist = '00:0' + version.substring(0,1) + ':' + version.substring(2,3) + version.substring(4,5) +':00:00:00'
+                    var _koronalist = '00:0' + ':' + version.substring(0,1)  + version.substring(2,3) + version.substring(4,5) +':00:00:00'
                     var moved = ''
                     for (var i = 1; i<rs.rows.length;i++){
                         var _poll = Number(rs.rows.item(i).devicepair.substring(0,2))

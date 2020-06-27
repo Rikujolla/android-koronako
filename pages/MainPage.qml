@@ -330,9 +330,9 @@ Page {
         running: true
         repeat: true
         onTriggered: {
+            koronaScan.setDiscoverable();
             Mydb.findHits(current_day());
             koronaScan.startScan();
-            console.log("test")
         }
     }
 
@@ -349,14 +349,13 @@ Page {
     Koronascan {
         id:koronaScan
         onBtDeviceChanged:{
-            console.log("hits")
             Mydb.addHits(btDevice, btDevice.substring(0, 2))
         }
     }
 
     Koronaclient {
         id: koronaClient
-        onKorodataChanged:  console.log(korodata, "test")
+        onKorodataChanged:  {}
         onMsgChanged: {
             switch (msg) {
             case 1: // No connection to server
@@ -408,6 +407,20 @@ Page {
                     koronaEnd.enabled = true
                 }
                 break;
+            case 6: // Other error
+                if (checkMyKorona.enabled == false){
+                    msgRow1.visible = true
+                    msgRow1.text = qsTr("Exposure status: ") + messages[msg].mesg
+                    checkMyKorona.enabled = true
+                }
+                else {
+                    msgRow2.visible = true
+                    msgRow2.text = qsTr("Data sent status: ") + messages[msg].mesg
+                    sendMyKorona.enabled = true
+                    koronaStart.enabled = true
+                    koronaEnd.enabled = true
+                }
+                break;
             default:
                 break;
             }
@@ -444,6 +457,7 @@ Page {
         Mydb.loadSettings()
         covidStartDate != "" ? koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat) : koronaStart.text = qsTr("Start date")
         covidEndDate != "" ? koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat) : koronaEnd.text = qsTr("End date")
+        koronaScan.setDiscoverable();
     }
 
 }

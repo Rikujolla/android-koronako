@@ -72,6 +72,7 @@ public:
     Device(QObject *parent = 0);
     ~Device();
     Q_INVOKABLE void startScan();
+    Q_INVOKABLE void setDiscoverable();
     QString btDevice(){return myBtDevice;}
     void setBtDevice(QString te11){
         myBtDevice = te11;
