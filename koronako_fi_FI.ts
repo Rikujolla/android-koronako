@@ -32,7 +32,7 @@
     <message>
         <location filename="pages/About.qml" line="85"/>
         <source>Privacy</source>
-        <translation>Yksityisyys</translation>
+        <translation type="finished">Yksityisyys</translation>
     </message>
     <message>
         <location filename="pages/About.qml" line="96"/>
@@ -98,128 +98,130 @@
 <context>
     <name>MainPage</name>
     <message>
-        <location filename="pages/MainPage.qml" line="13"/>
+        <location filename="pages/MainPage.qml" line="15"/>
         <source>Not connected to server!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="14"/>
+        <location filename="pages/MainPage.qml" line="16"/>
         <source>Exposured!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="15"/>
+        <location filename="pages/MainPage.qml" line="17"/>
         <source>No exposure!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="16"/>
+        <location filename="pages/MainPage.qml" line="18"/>
         <source>Sent corona data!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="17"/>
+        <location filename="pages/MainPage.qml" line="19"/>
         <source>Wrong app version!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="18"/>
+        <location filename="pages/MainPage.qml" line="20"/>
         <source>Other error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="24"/>
+        <location filename="pages/MainPage.qml" line="26"/>
         <source>Today</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="41"/>
+        <location filename="pages/MainPage.qml" line="46"/>
         <source>Phones close of my phone: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="62"/>
+        <location filename="pages/MainPage.qml" line="67"/>
         <source>Number of the phones the Koronako app has detected today close of your phone.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="66"/>
+        <location filename="pages/MainPage.qml" line="72"/>
         <source>Phone exposures: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="87"/>
+        <location filename="pages/MainPage.qml" line="93"/>
         <source>Number of the those phones that have exceeded determined exposure time.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="92"/>
-        <location filename="pages/MainPage.qml" line="397"/>
+        <location filename="pages/MainPage.qml" line="99"/>
+        <location filename="pages/MainPage.qml" line="438"/>
         <source>Days from last corona exposure: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="113"/>
+        <location filename="pages/MainPage.qml" line="120"/>
         <source>By sending your exposure data to the server, you can check if somebody has exposured you to coronavirus.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="127"/>
-        <location filename="pages/MainPage.qml" line="352"/>
-        <location filename="pages/MainPage.qml" line="358"/>
+        <location filename="pages/MainPage.qml" line="134"/>
+        <location filename="pages/MainPage.qml" line="379"/>
+        <location filename="pages/MainPage.qml" line="385"/>
         <source>Exposures checked from server: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="147"/>
+        <location filename="pages/MainPage.qml" line="157"/>
         <source>Check corona exposures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="160"/>
+        <location filename="pages/MainPage.qml" line="172"/>
         <source>My korona infection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="181"/>
+        <location filename="pages/MainPage.qml" line="193"/>
         <source>By sending my corona infection dates and exposure data to the server, I will help others to prevent of spreading the disease.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="189"/>
-        <location filename="pages/MainPage.qml" line="417"/>
+        <location filename="pages/MainPage.qml" line="201"/>
+        <location filename="pages/MainPage.qml" line="458"/>
         <source>Start date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="218"/>
-        <location filename="pages/MainPage.qml" line="418"/>
+        <location filename="pages/MainPage.qml" line="236"/>
+        <location filename="pages/MainPage.qml" line="459"/>
         <source>End date</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="261"/>
-        <location filename="pages/MainPage.qml" line="367"/>
+        <location filename="pages/MainPage.qml" line="285"/>
+        <location filename="pages/MainPage.qml" line="394"/>
         <source>Infection data sent to the server: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="267"/>
+        <location filename="pages/MainPage.qml" line="294"/>
         <source>Send my infection data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="337"/>
-        <location filename="pages/MainPage.qml" line="350"/>
-        <location filename="pages/MainPage.qml" line="356"/>
-        <location filename="pages/MainPage.qml" line="372"/>
+        <location filename="pages/MainPage.qml" line="364"/>
+        <location filename="pages/MainPage.qml" line="377"/>
+        <location filename="pages/MainPage.qml" line="383"/>
+        <location filename="pages/MainPage.qml" line="399"/>
+        <location filename="pages/MainPage.qml" line="413"/>
         <source>Exposure status: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/MainPage.qml" line="342"/>
-        <location filename="pages/MainPage.qml" line="363"/>
-        <location filename="pages/MainPage.qml" line="377"/>
+        <location filename="pages/MainPage.qml" line="369"/>
+        <location filename="pages/MainPage.qml" line="390"/>
+        <location filename="pages/MainPage.qml" line="404"/>
+        <location filename="pages/MainPage.qml" line="418"/>
         <source>Data sent status: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -232,33 +234,41 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/Settings.qml" line="53"/>
+        <location filename="pages/Settings.qml" line="56"/>
         <source>Server settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/Settings.qml" line="65"/>
+        <location filename="pages/Settings.qml" line="69"/>
         <source>Insert here address info of your koronako-server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/Settings.qml" line="74"/>
+        <location filename="pages/Settings.qml" line="78"/>
         <source>IP address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/Settings.qml" line="104"/>
+        <location filename="pages/Settings.qml" line="110"/>
         <source>Port number</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/Settings.qml" line="127"/>
-        <source>Other settings</source>
+        <location filename="pages/Settings.qml" line="136"/>
+        <source>Use common server</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ShowData</name>
+    <message>
+        <location filename="pages/ShowData.qml" line="34"/>
+        <source>Data page</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="pages/Settings.qml" line="139"/>
-        <source>Timer settings etc</source>
+        <location filename="pages/ShowData.qml" line="51"/>
+        <source>Data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -270,12 +280,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main.qml" line="58"/>
+        <location filename="main.qml" line="59"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main.qml" line="67"/>
+        <location filename="main.qml" line="68"/>
+        <source>Show data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.qml" line="76"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

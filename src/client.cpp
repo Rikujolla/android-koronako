@@ -161,7 +161,7 @@ void Client::exchangeDataWithServer(QString _toTcp)
             tcpSocket->write(temp2,temp.length());
             QString result;
             result = temp2;
-            //qDebug() << "Move request sent" << mySipadd << mySport << result;
+            qDebug() << "Move request sent" << mySipadd << mySport << result;
             values--;
         }
 
@@ -175,25 +175,25 @@ void Client::exchangeDataWithServer(QString _toTcp)
                 msgChanged(myMsg);
                 myMsg2 = nextFortune.right(2).toInt();
                 msg2Changed(myMsg2);
-                //qDebug() << "Server answers: " << nextFortune << myMsg << myMsg2;
+                qDebug() << "Server answers: " << nextFortune << myMsg << myMsg2;
             }
             else if (nextFortune.left(10) == "NOEXPOSURE"){
-                //qDebug() << "Server answers: " << nextFortune;
+                qDebug() << "Server answers: " << nextFortune;
                 myMsg = 3; // Noexposure message
                 msgChanged(myMsg);
             }
             else if (nextFortune.left(10) == "SENTCOVIDD") {
-                //qDebug() << "Server answers: " << nextFortune;
+                qDebug() << "Server answers: " << nextFortune;
                 myMsg = 4; // Sent data message
                 msgChanged(myMsg);
             }
             else if (nextFortune.left(10) == "ERRORERROR") {
-                //qDebug() << "Server answers error: " << nextFortune;
+                qDebug() << "Server answers error: " << nextFortune;
                 myMsg = 5; // Error message
                 msgChanged(myMsg);
             }
             else {
-                //qDebug() << "Server answers error: " << nextFortune;
+                qDebug() << "Server answers error: " << nextFortune;
                 myMsg = 6; // Error message
                 msgChanged(myMsg);
             }
@@ -201,14 +201,14 @@ void Client::exchangeDataWithServer(QString _toTcp)
         }
         else {
             tcpSocket->abort();
-            //qDebug("Data could not be read");
+            qDebug("Data could not be read");
         }
     }
     else {
         tcpSocket->abort();
         myMsg = 1; // No connection message
         msgChanged(myMsg);
-        //qDebug("Not connected!");
+        qDebug("Not connected!");
     }
 }
 
@@ -219,6 +219,7 @@ void Client::readFortune()
 
 void Client::displayError(QAbstractSocket::SocketError socketError)
 {
+    qDebug() <<"Testing code";
     switch (socketError) {
     case QAbstractSocket::RemoteHostClosedError:
         break;

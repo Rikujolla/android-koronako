@@ -11,7 +11,7 @@ import "./databases.js" as Mydb
 Page {
     id: page
 
-    property var messages: [{mesg:""},
+    property var messages: [{mesg:qsTr("Not known")},
         {mesg:qsTr("Not connected to server!")},
         {mesg:qsTr("Exposured!")},
         {mesg:qsTr("No exposure!")},
@@ -131,7 +131,7 @@ Page {
                     right: parent.right
                     margins: Screen.width/30
                 }
-                text: qsTr("Exposures checked from server: %1").arg("NOT KNOWN")
+                text: qsTr("Exposures checked from server: %1").arg(messages[0].mesg)
             }
 
             Text {
@@ -207,27 +207,27 @@ Page {
 
                     onClicked: {
                         var dialog = stackView.push(pickerComponent, {
-                                                    date: covidStartDate != "" ? covidStartDate : new Date('2020/06/01')
-                                                })
-                    dialog.clicked.connect(function() {
-                        // Not accepting future date
-                        if((new Date(dialog.selectedDate)-new Date())/24/3600/1000 >0.5){
-                            covidStartDate = new Date()
-                            koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
-                        }
-                        // Start date cannot be newer than end date
-                        else if((new Date(dialog.selectedDate)-new Date(covidEndDate))/24/3600/1000 >0.5){
-                            covidStartDate = covidEndDate
-                            koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
+                                                        date: covidStartDate != "" ? covidStartDate : new Date('2020/06/01')
+                                                    })
+                        dialog.clicked.connect(function() {
+                            // Not accepting future date
+                            if((new Date(dialog.selectedDate)-new Date())/24/3600/1000 >0.5){
+                                covidStartDate = new Date()
+                                koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
+                            }
+                            // Start date cannot be newer than end date
+                            else if((new Date(dialog.selectedDate)-new Date(covidEndDate))/24/3600/1000 >0.5){
+                                covidStartDate = covidEndDate
+                                koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
 
-                        }
-                        else {
-                            covidStartDate = dialog.selectedDate
-                            koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
-                        }
-                        Mydb.saveSettings(1);
-                        stackView.pop()
-                    })
+                            }
+                            else {
+                                covidStartDate = dialog.selectedDate
+                                koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
+                            }
+                            Mydb.saveSettings(1);
+                            stackView.pop()
+                        })
                     }
                 }
 
@@ -242,34 +242,34 @@ Page {
 
                     onClicked: {
                         var dialog = stackView.push(pickerComponent, {
-                                                    date: covidEndDate != "" ? covidEndDate : new Date()
-                                                })
-                    dialog.clicked.connect(function() {
-                        // Not accepting future date
-                        if((new Date(dialog.selectedDate)-new Date())/24/3600/1000 >0.5){
-                            covidEndDate = new Date()
-                            koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
-                        }
-                        // End day cannot be earlier than start date
-                        else if ((new Date(dialog.selectedDate)-new Date(covidStartDate))/24/3600/1000 < 0.5) {
-                            covidEndDate = covidStartDate
-                            koronaEnd.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
-                        }
-                        else {
-                            covidEndDate = dialog.selectedDate
-                            koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
-                        }
-                        Mydb.saveSettings(1);
-                        stackView.pop()
-                    })
+                                                        date: covidEndDate != "" ? covidEndDate : new Date()
+                                                    })
+                        dialog.clicked.connect(function() {
+                            // Not accepting future date
+                            if((new Date(dialog.selectedDate)-new Date())/24/3600/1000 >0.5){
+                                covidEndDate = new Date()
+                                koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
+                            }
+                            // End day cannot be earlier than start date
+                            else if ((new Date(dialog.selectedDate)-new Date(covidStartDate))/24/3600/1000 < 0.5) {
+                                covidEndDate = covidStartDate
+                                koronaEnd.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
+                            }
+                            else {
+                                covidEndDate = dialog.selectedDate
+                                koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat)
+                            }
+                            Mydb.saveSettings(1);
+                            stackView.pop()
+                        })
                     }
                 }
             }
 
             Component {
-            id: pickerComponent
-            Calendar {}
-        }
+                id: pickerComponent
+                Calendar {}
+            }
 
             Text {
                 id: exposuresSentText
@@ -327,7 +327,7 @@ Page {
 
     Timer{
         interval: discoveryTimer
-        running: true
+        running: discoveryRunning
         repeat: true
         onTriggered: {
             koronaScan.setDiscoverable();
@@ -450,6 +450,17 @@ Page {
         current_date = n
         return current_date
     }
+
+    Timer {
+        id: delay
+        interval: 200
+        running: false
+        repeat: false
+        onTriggered: {
+            stackView.push("Settings.qml")
+        }
+    }
+
     Component.onCompleted: {
         Mydb.findHits(current_day());
         koronaScan.ctime = discoveryTimer;
@@ -457,7 +468,17 @@ Page {
         Mydb.loadSettings()
         covidStartDate != "" ? koronaStart.text = new Date(covidStartDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat) : koronaStart.text = qsTr("Start date")
         covidEndDate != "" ? koronaEnd.text = new Date(covidEndDate).toLocaleDateString(Qt.locale(),Locale.ShortFormat) : koronaEnd.text = qsTr("End date")
-        koronaScan.setDiscoverable();
+        if (developer){console.log(koronaScan.btVisible, koronaScan.setDiscoverable())}
+        // Different on Android
+        if (koronaScan.setDiscoverable()) {
+            if (serverAddress == "" || !koronaScan.getName()){
+                delay.start()
+                discoveryRunning = true
+            }
+            else {
+                discoveryRunning = true
+            }
+        }
     }
 
 }

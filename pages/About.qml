@@ -26,132 +26,133 @@ import QtQuick 2.12
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.2
 
-    Page {
-        id: page
+Page {
+    id: page
 
-        title: qsTr("About page")
+    title: qsTr("About page")
 
-        Flickable {
-            anchors.fill: parent
+    Flickable {
+        anchors.fill: parent
 
-            contentHeight: column.height
+        contentHeight: column.height
 
-            Column {
-                id: column
+        Column {
+            id: column
 
-                width: page.width
-                spacing: Screen.height/30
-                topPadding: Screen.height/30
-                leftPadding: Screen.width/30
-                Image {
-                    id: logo
-                    source: "./images/harbour-koronako.png"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    height: Screen.width/7
-                    width: Screen.width/7
-                }
+            width: page.width
+            spacing: Screen.height/30
+            topPadding: Screen.height/30
+            leftPadding: Screen.width/30
+            Image {
+                id: logo
+                source: "./images/harbour-koronako.png"
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: Screen.width/7
+                width: Screen.width/7
+            }
 
-                Label {
-                    width: parent.width
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Screen.width/30
-                    }
-                    //: The name of the app followed with a version number
-                    text: {qsTr("Koronako, version") + " " + version}
+            Label {
+                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Screen.width/30
                 }
+                //: The name of the app followed with a version number
+                text: {qsTr("Koronako, version") + " " + version}
+            }
 
-                Label {
-                    font.bold: true
-                    text: qsTr("Idea")
+            Label {
+                font.bold: true
+                text: qsTr("Idea")
+            }
+            Text {
+                wrapMode: Text.WordWrap
+                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Screen.width/30
                 }
-                Text {
-                    wrapMode: Text.WordWrap
-                    width: parent.width
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Screen.width/30
-                    }
-                    text: {
-                        qsTr("The idea of the software is to scan devices with bluetooth to help determine possible coronavirus exposures.")
-                                + qsTr(" In addition of the app a proper server application (koronako-server) is needed.")
-                    }
+                text: {
+                    qsTr("The idea of the software is to scan devices with bluetooth to help determine possible coronavirus exposures.")
+                            + qsTr(" In addition of the app a proper server application (koronako-server) is needed.")
                 }
+            }
 
-                Label {
-                    font.bold: true
-                    text: qsTr("Privacy")
+            Label {
+                font.bold: true
+                text: qsTr("Privacy")
+            }
+            Text {
+                wrapMode: Text.WordWrap
+                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Screen.width/30
                 }
-                Text {
-                    wrapMode: Text.WordWrap
-                    width: parent.width
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Screen.width/30
-                    }
-                    text: {
-                        qsTr("The basic idea to maintain your and others privacy is a symmetric bluetooth address mix of the devices.")
-                                + qsTr(" Because only part of the address is used false alarms are possible occasionally.")
-                                +"\n" + qsTr("Only mixed bluetooth address and a month day number is saved to the database preventing data hacking later.")
-                                + qsTr(" Nor more than one month data can be saved.")
-                                +"\n" + qsTr("Paired devices are not saved to database. The major privacy concern is the requirement to have bluetooth on revealing your device to others.")
-                    }
+                text: {
+                    qsTr("The basic idea to maintain your and others privacy is a symmetric device name mix of the devices.")
+                            + qsTr(" Because only part of the device name is used false alarms are possible occasionally.")
+                            +"\n" + qsTr("Only mixed device names and a month day number is saved to the database preventing data hacking later.")
+                            + qsTr(" Nor more than one month data can be saved.")
+                            +"\n" + qsTr("Paired devices are not saved to database. The major privacy concern is the requirement to have bluetooth on revealing your device to others.")
                 }
+            }
 
-                Label {
-                    font.bold: true
-                    text: qsTr("Translations")
+            Label {
+                font.bold: true
+                text: qsTr("Translations")
+            }
+            Text {
+                wrapMode: Text.WordWrap
+                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Screen.width/30
                 }
-                Text {
-                    wrapMode: Text.WordWrap
-                    width: parent.width
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Screen.width/30
-                    }
-                    text: {
-                        qsTr("Finnish (Riku Lahtinen)")
-                    }
+                text: {
+                    qsTr("Finnish (Riku Lahtinen)")
                 }
+            }
 
-                Label {
-                    font.bold: true
-                    text: qsTr("Contributions")
+            Label {
+                font.bold: true
+                text: qsTr("Contributions")
+            }
+            Text {
+                wrapMode: Text.WordWrap
+                width: parent.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Screen.width/30
                 }
-                Text {
-                    wrapMode: Text.WordWrap
-                    width: parent.width
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Screen.width/30
-                    }
-                    text: {
-                        qsTr("App icon (Riku Lahtinen)")
-                    }
+                text: {
+                    qsTr("App icon (Riku Lahtinen)")
+                            + "\n" + qsTr("Android device list from wikipedia.")
                 }
+            }
 
-                Label {
-                    font.bold: true
-                    text: qsTr("Licence")
+            Label {
+                font.bold: true
+                text: qsTr("Licence")
+            }
+            Text {
+                wrapMode: Text.WordWrap
+                width: root.width
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    margins: Screen.width/30
                 }
-                Text {
-                    wrapMode: Text.WordWrap
-                    width: root.width
-                    anchors {
-                        left: parent.left
-                        right: parent.right
-                        margins: Screen.width/30
-                    }
-                    text: qsTr("Copyright (c) 2020, Riku Lahtinen") + "\n"
-                          + qsTr("Licensed under BSD. License, source code and more information:") + "\n"
-                          + ("https://github.com/Rikujolla/android-koronako")
-                }
+                text: qsTr("Copyright (c) 2020, Riku Lahtinen") + "\n"
+                      + qsTr("Licensed under BSD. License, source code and more information:") + "\n"
+                      + ("https://github.com/Rikujolla/android-koronako")
             }
         }
     }
+}
 

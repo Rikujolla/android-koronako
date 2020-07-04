@@ -7,5 +7,6 @@
         <file>pages/Settings.qml</file>
         <file>pages/databases.js</file>
         <file>pages/images/harbour-koronako.png</file>
+        <file>pages/ShowData.qml</file>
     </qresource>
 </RCC>
