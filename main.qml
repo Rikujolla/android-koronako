@@ -11,15 +11,24 @@ ApplicationWindow {
     title: qsTr("Stack")
 
     ///Commonstart
-    property string version : "0.1.1"
+    property string version : "0.1.2"
     property string covidStartDate : "" // Start date for my corona
     property string covidEndDate : "" // End date for my corona
     property int minHits : 15 // minimum amount of hits to give exposure, related to discoveryTimer
     property int discoveryTimer : 60000 // discoveryTimer default value, discovered once per minute
-    property string serverAddress : "172.28.172.3" //Default server address
+    property string serverAddress : "" //Default server address
     property int serverPort: 4243 // Default server port
     property string lastUsed : "" // To be utilized later to remove old data if the ap has been used seldom
     property int coronaExposureSince : -1 // Days from last corona exposure
+    property bool developer : true // Switch false before publishing the app
+    property bool discoveryRunning : false //Defaulting app not working before tests
+
+    property var names :[
+        "Nokia 3",
+        "Nokia 4.2",
+        "Nokia 5",
+        "Nokia 6"
+    ]
     ///Commonend
 
 
@@ -59,6 +68,15 @@ ApplicationWindow {
                 width: parent.width
                 onClicked: {
                     stackView.push("pages/Settings.qml")
+                    drawer.close()
+                }
+            }
+            ItemDelegate {
+                visible: developer
+                text: qsTr("Show data")
+                width: parent.width
+                onClicked: {
+                    stackView.push("pages/ShowData.qml")
                     drawer.close()
                 }
             }

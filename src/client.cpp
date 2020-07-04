@@ -219,6 +219,7 @@ void Client::readFortune()
 
 void Client::displayError(QAbstractSocket::SocketError socketError)
 {
+    qDebug() <<"Testing code";
     switch (socketError) {
     case QAbstractSocket::RemoteHostClosedError:
         break;
