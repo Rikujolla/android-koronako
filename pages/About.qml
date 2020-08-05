@@ -142,7 +142,7 @@ Page {
             }
             Text {
                 wrapMode: Text.WordWrap
-                width: root.width
+                width: parent.width
                 anchors {
                     left: parent.left
                     right: parent.right
